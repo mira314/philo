@@ -1,4 +1,4 @@
-SRCS = 
+SRCS = utlis.c main.c
 
 OBJS = ${SRCS:.c=.o}
 
