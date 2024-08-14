@@ -6,7 +6,7 @@
 /*   By: vrandria <vrandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 16:47:32 by vrandria          #+#    #+#             */
-/*   Updated: 2024/08/14 22:20:30 by vrandria         ###   ########.fr       */
+/*   Updated: 2024/08/15 01:17:43 by vrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_philo
     long    time_start;
     int *dead;
     int nb_philo;
+    pthread_t   thread;
     pthread_mutex_t *right_fork;
     pthread_mutex_t *left_fork;
     pthread_mutex_t *write_lock;
@@ -61,13 +62,21 @@ void    init_forks(pthread_mutex_t *forks, long nb_philo);
 void init_philo(t_philo *ph, t_data *data, pthread_mutex_t *fork, char **argv);
 /**********************time_utils.c*******************/
 long    get_time(void);
+int ft_usleep(long time);
 /***********************thread_utils.c****************/
 int init_thread(t_data *data, pthread_mutex_t *forks);
+void destroy_pthread(char *msg, t_data *data, pthread_mutex_t *forks);
+int dead_lock(t_philo *philo);
 /***************************routing.c*******************/
 int dead_check(t_philo *philo);
 int is_dead(t_philo *philo, long time_to_dead);
-void routing(void *ptr);
+void *routing(void *ptr);
 int eat_full(t_philo *philo);
+void    *action_philo(void *ptr);
 /**************print.c******************************/
 void print_action(char *msg, t_philo *philo, int id);
+/*****************action.c*************************/
+void eating(t_philo *philo);
+void sleeping(t_philo *philo);
+void thinking(t_philo *philo);
 #endif

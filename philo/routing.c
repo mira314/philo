@@ -6,7 +6,7 @@
 /*   By: vrandria <vrandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 21:16:28 by vrandria          #+#    #+#             */
-/*   Updated: 2024/08/14 22:30:15 by vrandria         ###   ########.fr       */
+/*   Updated: 2024/08/15 01:41:34 by vrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int eat_full(t_philo *philo)
 
     i = 0;
     is_full = 0;
-    if (philo[0].nb_times_to_eat = -1)
+    if (philo[0].nb_times_to_eat == -1)
         return (0);
     while (philo[0].nb_philo > i)
     {
@@ -67,7 +67,7 @@ int eat_full(t_philo *philo)
     }
     return (0);
 }
-void routing(void *ptr)
+void *routing(void *ptr)
 {
     t_philo *philo;
 
@@ -75,5 +75,21 @@ void routing(void *ptr)
     while (1)
         if (dead_check(philo) == 1 || eat_full(philo) == 1)
             break ;
+    return (ptr);
+}
+
+void    *action_philo(void *ptr)
+{
+    t_philo *philo;
+    
+    philo = (t_philo *)ptr;
+    if (philo->id % 2 == 0)
+        ft_usleep(1);
+    while (!dead_lock(philo))
+    {
+        eating(philo);
+        sleeping(philo);
+        thinking(philo);
+    }
     return (ptr);
 }

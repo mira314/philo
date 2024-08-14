@@ -6,7 +6,7 @@
 /*   By: vrandria <vrandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 13:00:16 by vrandria          #+#    #+#             */
-/*   Updated: 2024/08/14 21:05:26 by vrandria         ###   ########.fr       */
+/*   Updated: 2024/08/15 01:48:34 by vrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,6 @@ void init_philo(t_philo *ph, t_data *data, pthread_mutex_t *fork, char **argv)
             ph[i].right_fork = &fork[ph[i].nb_philo - 1];
         else
             ph[i].right_fork = &fork[i - 1];
+        i++;
     }
 }
