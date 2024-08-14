@@ -1,4 +1,4 @@
-SRCS = utlis.c main.c
+SRCS = utlis.c main.c check.c init.c time_utilis.c
 
 OBJS = ${SRCS:.c=.o}
 

@@ -6,7 +6,7 @@
 /*   By: vrandria <vrandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 16:47:32 by vrandria          #+#    #+#             */
-/*   Updated: 2024/08/06 15:13:31 by vrandria         ###   ########.fr       */
+/*   Updated: 2024/08/14 20:35:18 by vrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,41 +15,50 @@
 # include <stdio.h>
 # include <stdlib.h>   
 # include <unistd.h>
-# include <stdbool.h>
 # include <sys/time.h>
-# include <limits.h>
-# include <stdint.h>
 # include <pthread.h>
-
-typedef struct s_data t_data;
 
 typedef struct s_philo
 {
-    unsigned long id;
-    pthread_t   thread;
-    unsigned long   time_to_eat;
-    unsigned long   fork[2];
-    pthread_mutex_t mutex;
-    unsigned long   last_eat;
-    t_data  *data;
+    int id;
+    int eating;
+    int count_eating;
+    int nb_times_to_eat;
+    long last_eat;
+    long time_to_die;
+    long time_to_eat;
+    long time_to_sleep;
+    long    time_start;
+    int *dead;
+    int nb_philo;
+    pthread_mutex_t *right_fork;
+    pthread_mutex_t *left_fork;
+    pthread_mutex_t *write_lock;
+    pthread_mutex_t *dead_lock;
+    pthread_mutex_t *eat_lock;
 } t_philo;
+
 typedef struct s_data
 {
-    unsigned long   time_start;
-    int nb_philo;
-    pthread_t   is_dead;
-    unsigned long   time_to_die;
-    unsigned long   time_to_eat;
-    unsigned long   time_to_sleep;
-    int eat_needed;
-    bool simulation_end;
-    pthread_mutex_t simulation_end_lock;
-    pthread_mutex_t action_lock;
-    pthread_mutex_t *fork_locks;
-    t_philo **philos;
-
+    int one_philo_is_dead;
+    pthread_mutex_t dead_lock;
+    pthread_mutex_t eat_lock;
+    pthread_mutex_t write_lock;
+    t_philo *philo;
 } t_data;
 
+/************main.c */
 
-
+/*************check.c  *********** */
+int ft_is_atoible(char *str);
+int check_argumets(int argc, char *argv[]);
+/**************utils.c ************/
+int	ft_strlen(char *str);
+int	ft_atol(char *str);
+/*************init.c  * ***********/
+void init_data(t_data *data, t_philo *philo);
+void    init_forks(pthread_mutex_t *forks, long nb_philo);
+void init_philo(t_philo *ph, t_data *data, pthread_mutex_t *fork, char **argv);
+/**********************time_utils.c*******************/
+long    get_time(void);
 #endif
