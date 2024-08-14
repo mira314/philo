@@ -6,7 +6,7 @@
 /*   By: vrandria <vrandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 16:47:32 by vrandria          #+#    #+#             */
-/*   Updated: 2024/08/14 20:35:18 by vrandria         ###   ########.fr       */
+/*   Updated: 2024/08/14 22:20:30 by vrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,13 @@ void    init_forks(pthread_mutex_t *forks, long nb_philo);
 void init_philo(t_philo *ph, t_data *data, pthread_mutex_t *fork, char **argv);
 /**********************time_utils.c*******************/
 long    get_time(void);
+/***********************thread_utils.c****************/
+int init_thread(t_data *data, pthread_mutex_t *forks);
+/***************************routing.c*******************/
+int dead_check(t_philo *philo);
+int is_dead(t_philo *philo, long time_to_dead);
+void routing(void *ptr);
+int eat_full(t_philo *philo);
+/**************print.c******************************/
+void print_action(char *msg, t_philo *philo, int id);
 #endif

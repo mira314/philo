@@ -6,7 +6,7 @@
 /*   By: vrandria <vrandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 14:52:27 by vrandria          #+#    #+#             */
-/*   Updated: 2024/08/10 13:35:18 by vrandria         ###   ########.fr       */
+/*   Updated: 2024/08/14 21:07:09 by vrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int main(int argc, char *argv[])
     init_data(&data, philo);
     init_forks(forks, ft_atol(argv[1]));
     init_philo(philo, &data, forks, argv);
+    init_thread(&data, forks);
     free(philo);
     free(forks);
     return (0);
