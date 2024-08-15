@@ -6,7 +6,7 @@
 /*   By: vrandria <vrandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 16:47:32 by vrandria          #+#    #+#             */
-/*   Updated: 2024/08/15 03:12:50 by vrandria         ###   ########.fr       */
+/*   Updated: 2024/08/15 15:36:13 by vrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,11 @@ typedef struct s_data
     pthread_mutex_t eat_lock;
     pthread_mutex_t write_lock;
     t_philo *philo;
+    int nb_philo;
 } t_data;
 
 /************main.c */
-
+void clear_pthread(t_data *data, pthread_mutex_t *forks);
 /*************check.c  *********** */
 int ft_is_atoible(char *str);
 int check_argumets(int argc, char *argv[]);
@@ -74,6 +75,7 @@ int eat_full(t_philo *philo);
 void    *action_philo(void *ptr);
 /**************print.c******************************/
 void print_action(char *msg, t_philo *philo, int id);
+void    print_dead(t_philo *philo, int id);
 /*****************action.c*************************/
 void eating(t_philo *philo);
 void sleeping(t_philo *philo);

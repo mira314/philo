@@ -6,31 +6,43 @@
 /*   By: vrandria <vrandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 14:52:27 by vrandria          #+#    #+#             */
-/*   Updated: 2024/08/15 03:45:22 by vrandria         ###   ########.fr       */
+/*   Updated: 2024/08/15 15:38:08 by vrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int main(int argc, char *argv[])
+void	clear_pthread(t_data *data, pthread_mutex_t *forks)
 {
-    t_data data;
-    t_philo *philo;
-    pthread_mutex_t *forks;
+	int	i;
 
-    if (check_argumets(argc, argv) == 0)
-        return (1);
+	i = 0;
+	pthread_mutex_destroy(&data->write_lock);
+	pthread_mutex_destroy(&data->eat_lock);
+	pthread_mutex_destroy(&data->dead_lock);
+	while (data->philo[0].nb_philo > i)
+	{
+		pthread_mutex_destroy(&forks[i]);
+		i++;
+	}
+}
 
-    philo = malloc(sizeof(t_philo) * ft_atol(argv[1]));
-    forks = malloc(sizeof(pthread_mutex_t) * ft_atol(argv[1]));
+int	main(int argc, char *argv[])
+{
+	t_data			data;
+	t_philo			*philo;
+	pthread_mutex_t	*forks;
 
-    init_data(&data, philo);
-    init_forks(forks, ft_atol(argv[1]));
-
-    init_philo(philo, &data, forks, argv);
-    init_thread(&data, forks);
-    destroy_pthread(NULL, &data, forks);
-    free(philo);
-    free(forks);
-    return (0);
+	if (check_argumets(argc, argv) == 0)
+		return (1);
+	philo = malloc(sizeof(t_philo) * ft_atol(argv[1]));
+	forks = malloc(sizeof(pthread_mutex_t) * ft_atol(argv[1]));
+	init_data(&data, philo);
+	init_forks(forks, ft_atol(argv[1]));
+	init_philo(philo, &data, forks, argv);
+	init_thread(&data, forks);
+	clear_pthread(&data, forks);
+	free(philo);
+	free(forks);
+	return (0);
 }

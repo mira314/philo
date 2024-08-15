@@ -6,7 +6,7 @@
 /*   By: vrandria <vrandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 21:16:28 by vrandria          #+#    #+#             */
-/*   Updated: 2024/08/15 03:52:38 by vrandria         ###   ########.fr       */
+/*   Updated: 2024/08/15 15:41:06 by vrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int dead_check(t_philo *philo)
     {
         if (is_dead(&philo[i], philo[i].time_to_die))
         {
-            print_action("died", &philo[i], philo[i].id);
+            print_dead(&philo[i], philo[i].id);
             pthread_mutex_lock(philo[0].dead_lock);
             *philo->dead = 1;
             pthread_mutex_unlock(philo[0].dead_lock);

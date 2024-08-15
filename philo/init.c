@@ -6,7 +6,7 @@
 /*   By: vrandria <vrandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 13:00:16 by vrandria          #+#    #+#             */
-/*   Updated: 2024/08/15 01:48:34 by vrandria         ###   ########.fr       */
+/*   Updated: 2024/08/15 05:55:42 by vrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ void init_philo(t_philo *ph, t_data *data, pthread_mutex_t *fork, char **argv)
     long i;
 
     i = 0;
-    while (ft_atol(argv[1]) > i)
+    data->nb_philo = ft_atol(argv[1]);
+    while (data->nb_philo > i)
     {
         ph[i].id = i + 1;
         ph[i].eating = 0;
@@ -62,6 +63,7 @@ void init_philo(t_philo *ph, t_data *data, pthread_mutex_t *fork, char **argv)
         ph[i].eat_lock = &data->eat_lock;
         ph[i].dead = &data->one_philo_is_dead;
         ph[i].left_fork = &fork[i];
+        thinking(&ph[i]);
         if (i == 0)
             ph[i].right_fork = &fork[ph[i].nb_philo - 1];
         else

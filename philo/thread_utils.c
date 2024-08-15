@@ -6,7 +6,7 @@
 /*   By: vrandria <vrandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 21:08:19 by vrandria          #+#    #+#             */
-/*   Updated: 2024/08/15 04:18:29 by vrandria         ###   ########.fr       */
+/*   Updated: 2024/08/15 05:51:36 by vrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,22 +45,22 @@ int init_thread(t_data *data, pthread_mutex_t *forks)
     pthread_t   monitor;
     int    i;
 
-    if (pthread_create(&monitor, NULL, &routing, data->philo) != 0)
-        destroy_pthread("thread error creating", data, forks);
     i = 0;
+    if (pthread_create(&monitor, NULL, &routing, data->philo))
+        destroy_pthread("thread error creating", data, forks);
     while (data->philo[0].nb_philo > i)
     {
         if (pthread_create(&data->philo[i].thread, NULL, &action_philo, 
-            &data->philo[i]) != 0)
+            &data->philo[i]))
             destroy_pthread("thread error creating", data, forks);
         i++;
     }
     i = 0;
-    if (pthread_join(monitor, NULL) != 0)
+    if (pthread_join(monitor, NULL))
         destroy_pthread("join error", data, forks);
     while (data->philo[0].nb_philo > i)
     {
-        if (pthread_join(data->philo[i].thread, NULL) != 0)
+        if (pthread_join(data->philo[i].thread, NULL))
             destroy_pthread("join error", data, forks);
         i++;
     }
