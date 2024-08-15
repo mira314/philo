@@ -6,7 +6,7 @@
 /*   By: vrandria <vrandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 21:16:28 by vrandria          #+#    #+#             */
-/*   Updated: 2024/08/15 01:41:34 by vrandria         ###   ########.fr       */
+/*   Updated: 2024/08/15 03:52:38 by vrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 int is_dead(t_philo *philo, long time_to_dead)
 {
     pthread_mutex_lock(philo->eat_lock);
-    if(get_time() - philo->last_eat >= time_to_dead && philo->eating == 0)
+    if (get_time() - philo->last_eat >= time_to_dead && philo->eating == 0)
     {
         pthread_mutex_unlock(philo->eat_lock);
         return (1);
@@ -84,8 +84,8 @@ void    *action_philo(void *ptr)
     
     philo = (t_philo *)ptr;
     if (philo->id % 2 == 0)
-        ft_usleep(1);
-    while (!dead_lock(philo))
+        ft_usleep(10);
+    while (!death_status(philo))
     {
         eating(philo);
         sleeping(philo);

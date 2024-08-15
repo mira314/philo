@@ -6,7 +6,7 @@
 /*   By: vrandria <vrandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 16:58:44 by vrandria          #+#    #+#             */
-/*   Updated: 2024/08/14 20:35:14 by vrandria         ###   ########.fr       */
+/*   Updated: 2024/08/15 02:08:41 by vrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ int ft_usleep(long time)
 
     start = get_time();
     while (get_time() - start < time)
-        usleep(200);
+        usleep(500);
     return (0);
 }

@@ -6,7 +6,7 @@ NAME = philo
 
 CC = gcc
 
-FLAGS = -Wall -Wextra -Werror -pthread
+FLAGS = -Wall -Wextra -Werror -pthread -g
 
 all: ${NAME}
 
@@ -28,4 +28,4 @@ test :
 	./philo 5 800 200 200 4
 
 test1 :
-	valgrind --tool=helgrind ./philo 4 400 200 200
+	valgrind --tool=helgrind ./philo 4 800 200 200 5
