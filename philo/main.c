@@ -6,13 +6,13 @@
 /*   By: vrandria <vrandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 14:52:27 by vrandria          #+#    #+#             */
-/*   Updated: 2024/08/15 15:38:08 by vrandria         ###   ########.fr       */
+/*   Updated: 2024/08/18 11:24:38 by vrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	clear_pthread(t_data *data, pthread_mutex_t *forks)
+void	clear_pthread(t_data *data, t_mutex *forks)
 {
 	int	i;
 
@@ -31,12 +31,12 @@ int	main(int argc, char *argv[])
 {
 	t_data			data;
 	t_philo			*philo;
-	pthread_mutex_t	*forks;
+	t_mutex	*forks;
 
 	if (check_argumets(argc, argv) == 0)
 		return (1);
 	philo = malloc(sizeof(t_philo) * ft_atol(argv[1]));
-	forks = malloc(sizeof(pthread_mutex_t) * ft_atol(argv[1]));
+	forks = malloc(sizeof(t_mutex) * ft_atol(argv[1]));
 	init_data(&data, philo);
 	init_forks(forks, ft_atol(argv[1]));
 	init_philo(philo, &data, forks, argv);

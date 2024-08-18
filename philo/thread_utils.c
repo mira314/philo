@@ -6,13 +6,13 @@
 /*   By: vrandria <vrandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 21:08:19 by vrandria          #+#    #+#             */
-/*   Updated: 2024/08/15 05:51:36 by vrandria         ###   ########.fr       */
+/*   Updated: 2024/08/18 11:27:11 by vrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void destroy_pthread(char *msg, t_data *data, pthread_mutex_t *forks)
+void destroy_pthread(char *msg, t_data *data, t_mutex *forks)
 {
     int i;
 
@@ -40,7 +40,7 @@ int death_status(t_philo *philo)
     pthread_mutex_unlock(philo->dead_lock);
     return (0);
 }
-int init_thread(t_data *data, pthread_mutex_t *forks)
+int init_thread(t_data *data, t_mutex *forks)
 {
     pthread_t   monitor;
     int    i;
