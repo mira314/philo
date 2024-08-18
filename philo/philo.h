@@ -62,7 +62,7 @@ int		ft_atol(char *str);
 /*************init.c  * ***********/
 void	init_data(t_data *data, t_philo *philo);
 void	init_forks(t_mutex *forks, long nb_philo);
-void	init_philo(t_philo *ph, t_data *data, t_mutex *fork, char **argv);
+void	init_philo(t_philo *ph, t_data *data, t_mutex *fork, char *argv[]);
 /**********************time_utils.c*******************/
 long	get_time(void);
 int		ft_usleep(long time);

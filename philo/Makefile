@@ -25,8 +25,3 @@ fclean: clean
 
 re : fclean all
 
-test :
-	./philo 5 1000 400 200 4
-
-test1 :
-	valgrind --tool=helgrind ./philo 4 800 200 200 5

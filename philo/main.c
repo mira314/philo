@@ -6,7 +6,7 @@
 /*   By: vrandria <vrandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 14:52:27 by vrandria          #+#    #+#             */
-/*   Updated: 2024/08/18 11:24:38 by vrandria         ###   ########.fr       */
+/*   Updated: 2024/08/18 13:05:51 by vrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	clear_pthread(t_data *data, t_mutex *forks)
 
 int	main(int argc, char *argv[])
 {
-	t_data			data;
-	t_philo			*philo;
+	t_data	data;
+	t_philo	*philo;
 	t_mutex	*forks;
 
 	if (check_argumets(argc, argv) == 0)
