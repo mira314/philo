@@ -6,7 +6,7 @@
 /*   By: vrandria <vrandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 13:00:16 by vrandria          #+#    #+#             */
-/*   Updated: 2024/08/18 13:04:59 by vrandria         ###   ########.fr       */
+/*   Updated: 2024/08/22 08:22:01 by vrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,32 @@ static void	set_philo(char *argv[], t_philo *philo)
 
 void	init_data(t_data *data, t_philo *philo)
 {
+	int	result;
+
 	data->one_philo_is_dead = 0;
 	data->philo = philo;
-	pthread_mutex_init(&data->write_lock, NULL);
-	pthread_mutex_init(&data->dead_lock, NULL);
-	pthread_mutex_init(&data->eat_lock, NULL);
+	result = pthread_mutex_init(&data->write_lock, NULL);
+	if (result != 0)
+		printf("error on initiaization on mutex write_lock");
+	result = pthread_mutex_init(&data->dead_lock, NULL);
+	if (result != 0)
+		printf("error on initiaization on mutex dead_lock");
+	result = pthread_mutex_init(&data->eat_lock, NULL);
+	if (result != 0)
+		printf("error on initiaization on mutex eat_lock");
 }
 
 void	init_forks(pthread_mutex_t *forks, long nb_philo)
 {
 	long	i;
+	int		result;
 
 	i = 0;
 	while (nb_philo > i)
 	{
-		pthread_mutex_init(&forks[i], NULL);
+		result = pthread_mutex_init(&forks[i], NULL);
+		if (result != 0)
+			printf("error on initiaization on mutex forks");
 		i++;
 	}
 }
