@@ -6,7 +6,7 @@
 /*   By: vrandria <vrandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 01:06:40 by vrandria          #+#    #+#             */
-/*   Updated: 2024/08/18 12:44:43 by vrandria         ###   ########.fr       */
+/*   Updated: 2024/08/24 10:34:12 by vrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,26 @@ void	sleeping(t_philo *philo)
 void	thinking(t_philo *philo)
 {
 	print_action("is thinking", philo, philo->id);
+}
+
+void	print_action(char *msg, t_philo *philo, int id)
+{
+	long	time;
+
+	pthread_mutex_lock(philo->write_lock);
+	time = get_time() - philo->time_start;
+	if (death_status(philo) == 0)
+		printf("%ld %d %s\n", time, id, msg);
+	pthread_mutex_unlock(philo->write_lock);
+}
+
+void	print_dead(t_philo *philo, int id)
+{
+	long	time;
+
+	pthread_mutex_lock(philo->write_lock);
+	time = get_time() - philo->time_start;
+	if (death_status(philo) == 0)
+		printf("%ld %d died\n", time, id);
+	pthread_mutex_unlock(philo->write_lock);
 }

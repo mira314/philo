@@ -6,7 +6,7 @@
 /*   By: vrandria <vrandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 14:52:27 by vrandria          #+#    #+#             */
-/*   Updated: 2024/08/18 13:05:51 by vrandria         ###   ########.fr       */
+/*   Updated: 2024/08/24 12:41:20 by vrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,23 @@
 void	clear_pthread(t_data *data, t_mutex *forks)
 {
 	int	i;
+	int	result;
 
 	i = 0;
-	pthread_mutex_destroy(&data->write_lock);
-	pthread_mutex_destroy(&data->eat_lock);
-	pthread_mutex_destroy(&data->dead_lock);
+	result = pthread_mutex_destroy(&data->write_lock);
+	if (result != 0)
+		printf("mutex destory failed on write lock with code %d\n", result);
+	result = pthread_mutex_destroy(&data->eat_lock);
+	if (result != 0)
+		printf("mutex destory failed on eat_lock with code %d\n", result);
+	result = pthread_mutex_destroy(&data->dead_lock);
+	if (result != 0)
+		printf("mutex destory failed on dead_lock with code %d\n", result);
 	while (data->philo[0].nb_philo > i)
 	{
-		pthread_mutex_destroy(&forks[i]);
+		result = pthread_mutex_destroy(&forks[i]);
+		if (result != 0)
+			printf("mutex destory failed on forks with code %d\n", result);
 		i++;
 	}
 }

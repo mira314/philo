@@ -6,7 +6,7 @@
 /*   By: vrandria <vrandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 16:47:32 by vrandria          #+#    #+#             */
-/*   Updated: 2024/08/18 11:31:31 by vrandria         ###   ########.fr       */
+/*   Updated: 2024/08/24 10:33:56 by vrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,12 @@ int		check_argumets(int argc, char *argv[]);
 /**************utils.c ************/
 int		ft_strlen(char *str);
 int		ft_atol(char *str);
+long	get_time(void);
+int		ft_usleep(long time);
 /*************init.c  * ***********/
 void	init_data(t_data *data, t_philo *philo);
 void	init_forks(t_mutex *forks, long nb_philo);
 void	init_philo(t_philo *ph, t_data *data, t_mutex *fork, char *argv[]);
-/**********************time_utils.c*******************/
-long	get_time(void);
-int		ft_usleep(long time);
 /***********************thread_utils.c****************/
 int		init_thread(t_data *data, t_mutex *forks);
 int		death_status(t_philo *philo);
@@ -75,11 +74,10 @@ int		is_dead(t_philo *philo, long time_to_dead);
 void	*routing(void *ptr);
 int		eat_full(t_philo *philo);
 void	*action_philo(void *ptr);
-/**************print.c******************************/
-void	print_action(char *msg, t_philo *philo, int id);
-void	print_dead(t_philo *philo, int id);
 /*****************action.c*************************/
 void	eating(t_philo *philo);
 void	sleeping(t_philo *philo);
 void	thinking(t_philo *philo);
+void	print_action(char *msg, t_philo *philo, int id);
+void	print_dead(t_philo *philo, int id);
 #endif

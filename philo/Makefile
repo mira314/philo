@@ -1,5 +1,5 @@
-SRCS = utlis.c main.c check.c init.c time_utilis.c \
-		thread_utils.c routing.c print.c action.c
+SRCS = utlis.c main.c check.c init.c \
+		thread_utils.c routing.c action.c
 
 OBJS = ${SRCS:.c=.o}
 
